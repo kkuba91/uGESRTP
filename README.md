@@ -1,2 +1,134 @@
 # uGESRTP
-GE Inteligent PLCs communication protocol
+#### GE Inteligent PLCs micro communication protocol
+#### Used by PLC family: 90-30, RX3i, RX7i
+#### Class tested with RX3i CPU with general functions for data exchange with a PLC
+#### Protocol was design mainly to communicate Machine Edition Development Environment with PLC. Unfortunately this is the only native protocol for data communication, so it high aviable and has full access to PLC data. Somehow restricted(parametrized) access was given other protocols like Modbus, tcp.OPC. That is why preffered use for commisioning is a principle practice strongly recommended here.
+
+Metodology of the protocol:
+
+- Set/Reset value (like in Modbus - no realtime ethernet)
+
+- Use of Ethernet Service Requests for data manipulation (something similar like SRV_REQ function block in PLC code, but it has other coding)
+
+- It uses TCP simple communication with initialization at the begining
+
+### How to:
+
+For init and start to communicate:
+
+ ```csharp
+    uGESRTP GE_driver(192.168.0.10);    /* Init object with PLC IPv4 address */ 
+    int status = GE_driver.initConnection();    /* status variale should return 0 with success */
+ ```
+Than it is dependent of purpose of application and could be used read/write functions.
+
+#### For REGISTERS (%R):
+ ```csharp
+        /*    Read register (Ex. R15 word)
+         *    return := INTEGER16BIT value    */
+         int address = 15;
+         Int16 value = read_R_WORD(address);
+         
+         /*    Write to register (Ex. R15 word)
+          *    return := INTEGER32BIT status    */
+         int value = 9876;    /* Value to write */
+         int status = write_R_WORD(address, val);
+         
+         /*    Read register (Ex. R16-R17 dword)
+          *    return := INTEGER32BIT value   */
+          address = 16;
+          Int32 DW_value = read_R_DWORD(address);
+          
+         /*    Write to register (Ex. R16-R17 dword)
+          *    return := INTEGER32BIT status    */
+          address = 16;
+          val = 64999;
+          status = write_R_DWORD(address, val);
+           
+         /*    Read register (Ex. R16-R17 float)
+          *    return := SINGLE PRECISION FLOAT value    */
+          address = 16;
+          float Fvalue =  read_R_FLOAT(address);
+          
+         /*    Write to register (Ex. R16-R17 float)
+          *    return := INTEGER32BIT status    */
+          address = 16;
+          Fvalue = 12.556f
+          status = write_R_FLOAT(address, Fvalue);
+ ```
+ 
+ #### For INPUTS (%I / %AI):
+  ```csharp
+       /*    Read single input (Ex. Address 8 gives: I8)
+        *    return := BIT value    */
+        int address = 8;
+        Boolean bit_value = read_I_BIT(address);
+        
+        /*    Read Input byte (Ex. Address 8 gives: I8-I15)
+         *    return := BYTE value    */
+         address = 8;
+         byte byte_value = read_I_BYTE(address);
+         
+        /*    Read Input word (Ex. Address 8 gives: I8-I23)
+         *    return := WORD value    */
+         address = 8;
+         Int16 value = read_I_WORD(address);
+         
+        /*    Read Analog Input (Ex. AI1 word)
+         *    return := INTEGER16BIT value    */
+         address = 1;    /* Analog Inputs given from different process image hardware inputs data than descrete inputs */
+         value = read_AI_WORD(address);
+ ```
+ 
+  #### For MARKERS (%M):
+  ```csharp
+       /*    Read single marker (Ex. M15)
+        *    return := BIT value    */
+        int address = 15;
+        Boolean Bit_Value = read_M_BIT(address);
+        
+       /*    Write to marker bit (Ex. M15 bit)
+        *    return := INTEGER32BIT status    */
+        address = 15;
+        Bit_Value = true;
+        int status = write_M_BIT(address, Bit_Value);
+        
+       /*    Read byte of markers (Ex. M8-M15)
+        *    return := BYTE value    */
+        address = 8;
+        byte B_val = read_M_BYTE(address);
+      
+   ```
+ 
+  #### For OUTPUTS (%Q / %AQ):
+  ```csharp
+       /*    Read single Output (Ex. Address 8 gives: Q8)
+        *    return := BIT value    */
+        int address = 8;
+        Boolean Bit_Value = read_Q_BIT(address);
+       
+       /*    Read Output byte (Ex. Address 8 gives: Q8-Q15)
+        *    return := BYTE value    */
+        address = 8;
+        byte Byte_Value = read_Q_BYTE(address);
+        
+       /*    Read Output word (Ex. Address 8 gives: Q8-Q23)
+        *    return := WORD value    */
+        address = 8;
+        Int16 value = read_Q_WORD(address);
+       
+       /*    Read Analog Output (Ex. AQ1 word)
+        *    return := INTEGER16BIT value    */
+        address = 1;    /* Analog Outputs given from different process image hardware outputs data than descrete outputs */
+        value = read_AQ_WORD(address);
+   ```
+ 
+ For deinit and close communicate on both sides:
+
+ ```csharp
+    int status = GE_driver.closeConnection();    /* status variale should return 0 with success */
+ ```
+ 
+ ## Trademarks and symbols mentioned here
+ 
+ GE Inteligent (PLC, Machine Edition environment) are used and distributed by Emerson - ©2020 Emerson Electric Co. All rights reserved.
