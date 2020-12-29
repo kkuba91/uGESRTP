@@ -3,7 +3,7 @@
 [![.NET: Version](https://img.shields.io/badge/.NET-%3E%3D4.5-brightgreen)](https://github.com/kkuba91/uGESRTP)
 
 # uGESRTP
-#### GE Inteligent PLCs micro communication protocol
+#### Micro GE Inteligent PLCs communication protocol
 #### Used by PLC family: 90-30, RX3i, RX7i
 #### Class tested with RX3i CPU with general functions for data exchange with a PLC
 #### Protocol was design mainly to communicate Machine Edition Development Environment with PLC. Unfortunately this is the only native protocol for data communication, so it is high aviable and takes full access to PLC data. Somehow restricted(parametrized) access was given to other protocols like Modbus, tcp.OPC. That is why preffered use for commisioning is a principle practice strongly recommended here.
