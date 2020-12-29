@@ -36,7 +36,7 @@ Than it is dependent of purpose of application and could be used read/write func
          /*    Write to register (Ex. R15 word)
           *    return := INTEGER32BIT status    */
          int value = 9876;    /* Value to write */
-         int status = write_R_WORD(address, val);
+         int status = write_R_WORD(address, value);
          
          /*    Read register (Ex. R16-R17 dword)
           *    return := INTEGER32BIT value   */
