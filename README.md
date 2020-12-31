@@ -14,7 +14,7 @@ Metodology of the protocol:
 
 - Use of Ethernet Service Requests for data manipulation (something similar like SRV_REQ function block in PLC code, but it has other coding)
 
-- It uses TCP simple communication with initialization at the begining
+- It uses TCP/IP communication with initialization at the begining
 
 ### How to:
 
