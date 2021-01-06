@@ -1,0 +1,10 @@
+C:\Users\Carbo\source\repos\UI\UI3\uWatchtable\uWatchtable\obj\Release\uWatchtable.StartForm.resources
+C:\Users\Carbo\source\repos\UI\UI3\uWatchtable\uWatchtable\obj\Release\uWatchtable.csproj.GenerateResource.cache
+C:\Users\Carbo\source\repos\UI\UI3\uWatchtable\uWatchtable\obj\Release\uWatchtable.csproj.CoreCompileInputs.cache
+C:\Users\Carbo\source\repos\UI\UI3\uWatchtable\uWatchtable\bin\Release\GEwatch.exe.config
+C:\Users\Carbo\source\repos\UI\UI3\uWatchtable\uWatchtable\bin\Release\GEwatch.exe
+C:\Users\Carbo\source\repos\UI\UI3\uWatchtable\uWatchtable\bin\Release\GEwatch.pdb
+C:\Users\Carbo\source\repos\UI\UI3\uWatchtable\uWatchtable\obj\Release\GEwatch.Properties.Resources.resources
+C:\Users\Carbo\source\repos\UI\UI3\uWatchtable\uWatchtable\obj\Release\GEwatch.exe
+C:\Users\Carbo\source\repos\UI\UI3\uWatchtable\uWatchtable\obj\Release\GEwatch.pdb
+C:\Users\Carbo\source\repos\UI\UI3\uWatchtable\uWatchtable\obj\Release\uWatchtable.csprojAssemblyReference.cache

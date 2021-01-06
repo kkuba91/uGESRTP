@@ -1,0 +1,13 @@
+C:\Users\Carbo\source\repos\UI\UI2\IPchanger\IPchanger\obj\Release\IPchanger.csprojAssemblyReference.cache
+C:\Users\Carbo\source\repos\UI\UI2\IPchanger\IPchanger\obj\Release\IPchanger.Adapter.resources
+C:\Users\Carbo\source\repos\UI\UI2\IPchanger\IPchanger\obj\Release\IPchanger.ChLang.resources
+C:\Users\Carbo\source\repos\UI\UI2\IPchanger\IPchanger\obj\Release\IPchanger.StartForm.resources
+C:\Users\Carbo\source\repos\UI\UI2\IPchanger\IPchanger\obj\Release\IPchanger.csproj.GenerateResource.cache
+C:\Users\Carbo\source\repos\UI\UI2\IPchanger\IPchanger\obj\Release\IPchanger.Properties.Resources.resources
+C:\Users\Carbo\source\repos\UI\UI2\IPchanger\IPchanger\obj\Release\IPchanger.csproj.CoreCompileInputs.cache
+C:\Users\Carbo\source\repos\UI\UI2\IPchanger\IPchanger\bin\Release\IPchanger.exe.config
+C:\Users\Carbo\source\repos\UI\UI2\IPchanger\IPchanger\bin\Release\IPchanger.exe
+C:\Users\Carbo\source\repos\UI\UI2\IPchanger\IPchanger\bin\Release\IPchanger.pdb
+C:\Users\Carbo\source\repos\UI\UI2\IPchanger\IPchanger\obj\Release\IPchanger.exe
+C:\Users\Carbo\source\repos\UI\UI2\IPchanger\IPchanger\obj\Release\IPchanger.pdb
+C:\Users\Carbo\source\repos\UI\UI2\IPchanger\IPchanger\obj\Release\IPchanger.Settings.resources
