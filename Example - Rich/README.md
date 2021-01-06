@@ -8,9 +8,15 @@ Warning: Full use only for %R and %M data.
 
 ## How to use:
 
-Just write proper IP address. Connect, if cinnection is established there would indicate feedback.
+Just write proper IP address. Connect, if connection is established there would indicate feedback of the state.
 
-Put address into table (DataGridView) and after comply online data would show in "Read Value" column cell.
+Put PLC memory address into table (DataGridView) and after comply online data would show in "Read Value" column cell.
 
 To write value just write into proper cell, in "Write value" column.
 
+## Screenshot:
+
+
+
+## Download example:
+[LINK](../blob/master/uGESRTP/Example - Rich)
