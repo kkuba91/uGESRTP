@@ -19,5 +19,5 @@ To write value just write into proper cell, in "Write value" column.
 
 
 ## Download example:
-[LINK](..Example%20-%20Rich/uWatchtable/bin/Release/GEwatch.exe)
+[LINK](../Example%20-%20Rich/uWatchtable/bin/Release/GEwatch.exe)
 
