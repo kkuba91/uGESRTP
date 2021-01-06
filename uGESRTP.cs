@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using System.Net.Sockets;
-
 
 namespace uWatchtable
 {
@@ -17,24 +16,24 @@ namespace uWatchtable
          *    PLC respond with message like:  0x03 0x00 ...
          *    */
         private byte[] msg_base = { 
-            0x02,        // 00 - Type (03 is Return, 02 is Transmit)
+            0x02,        // 00 - Type (x03:=ReceiveOK, x02:=Transmit, x08:=Something just after msg_init - maybe kind of exception interruption?)
             0x00,        // 01 - Unknown
-            0x06,        // 02 - Seq Number
+            0x06,        // 02 - Seq Number (x06 is ok, x05 also according referenced document)
             0x00,        // 03 - Unknown
             0x00,        // 04 - Text Length
-            0x00,        // 05 - Unknown
-            0x00,        // 06 - Unknown
-            0x00,        // 07 - Unknown
-            0x00,        // 08 - Unknown
-            0x01,        // 09 - Unknown
-            0x00,        // 10 - Unknown
-            0x00,        // 11 - Unknown
-            0x00,        // 12 - Unknown
-            0x00,        // 13 - Unknown
-            0x00,        // 14 - Unknown
-            0x00,        // 15 - Unknown
-            0x00,        // 16 - Unknown
-            0x01,        // 17 - Unknown
+            0x00,        // 05 - Unknown / Text character?
+            0x00,        // 06 - Unknown / Text character?
+            0x00,        // 07 - Unknown / Text character?
+            0x00,        // 08 - Unknown / Text character?
+            0x01,        // 09 - Unknown / Text character?
+            0x00,        // 10 - Unknown / Text character?
+            0x00,        // 11 - Unknown / Text character?
+            0x00,        // 12 - Unknown / Text character?
+            0x00,        // 13 - Unknown / Text character?
+            0x00,        // 14 - Unknown / Text character?
+            0x00,        // 15 - Unknown / Text character?
+            0x00,        // 16 - Unknown / Text character?
+            0x01,        // 17 - Unknown / Always x01
             0x00,        // 18 - Unknown
             0x00,        // 19 - Unknown
             0x00,        // 20 - Unknown
@@ -46,18 +45,18 @@ namespace uWatchtable
             0x00,        // 26 - Time Seconds
             0x00,        // 27 - Time Minutes
             0x00,        // 28 - Time Hours
-            0x00,        // 29 - Reserved/Unknown
-            0x06,        // 30 - Seq Number (Repeated) (0x06)
+            0x00,        // 29 - Reserved / Always x01
+            0x06,        // 30 - Seq Number (Repeated) (0x06) - meaning in responces from PLC
             0xc0,        // 31 - Message Type
             0x00,        // 32 - Mailbox Source
             0x00,        // 33 - Mailbox Source
             0x00,        // 34 - Mailbox Source
             0x00,        // 35 - Mailbox Source
-            0x10,        // 36 - Mailbox Destination
+            0x10,        // 36 - Mailbox Destination // dec: 3600
             0x0e,        // 37 - Mailbox Destination
             0x00,        // 38 - Mailbox Destination
             0x00,        // 39 - Mailbox Destination
-            0x01,        // 40 - Packet Number
+            0x01,        // 40 - Packet Number // to check
             0x01,        // 41 - Total Packet Number
             0x00,        // 42 - Service Request Code - (Operation Type SERVICE_REQUEST_CODE)
             0x00,        // 43 - Request Dependent Space (Ex. MEMORY_TYPE_CODE)
@@ -69,10 +68,10 @@ namespace uWatchtable
             0x00,        // 49 - Request Dependent Space (Ex. Write Value:MSB)
             0x00,        // 50 - Request Dependent Space (Ex. Write Value Part 2 for LONG:LSB)
             0x00,        // 51 - Request Dependent Space (Ex. Write Value Part 2 for LONG:MSB)
-            0x00,        // 52 - Unknown
-            0x00,        // 53 - Unknown
-            0x00,        // 54 - Unknown
-            0x00         // 55 - Unknown
+            0x00,        // 52 - Dependent of "Data Size" - byte 46, 47 / PLC status in other Service Request
+            0x00,        // 53 - Dependent of "Data Size" - byte 46, 47 / PLC status in other Service Request
+            0x00,        // 54 - Dependent of "Data Size" - byte 46, 47 / PLC status in other Service Request
+            0x00         // 55 - Dependent of "Data Size" - byte 46, 47 / PLC status in other Service Request
         };
 
         // Used at byte locaiton 42:
@@ -193,24 +192,17 @@ namespace uWatchtable
                 {
                     //this.msg_init[0] = 0x04; //Close connection for PLC TCP-ACK interruption
                     this.stream.Write(this.msg_init, 0, this.msg_init.Length);
-                    Int32 bytes = this.stream.Read(data, 0, data.Length);
-                    if (data[0] == 0x05)
-                    {
-                        this.Connected = false;
-                        return 0;
-                    }
-                    else
-                    {
-                        this.Connected = false;
-                        this.stream.Close();
-                        this.client.Close();
-                        return -2;
-                    }
+                    Int32 stat = this.stream.Read(data, 0, data.Length);
+                    this.Connected = false;
+                    this.stream.Close();
+                    this.client.Close();
+                    return 0;
                 }
                 return -1;
             }
             catch (Exception ex)
             {
+                this.Connected = false;
                 return -1;
             }
         }
