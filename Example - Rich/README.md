@@ -14,8 +14,6 @@ Put PLC memory address into table (DataGridView) and after comply online data wo
 
 To write value just write into proper cell, in "Write value" column.
 
-## Screenshot:
-
 
 
 ## Download example:
