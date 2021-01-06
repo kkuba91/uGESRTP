@@ -19,4 +19,5 @@ To write value just write into proper cell, in "Write value" column.
 
 
 ## Download example:
-[LINK](../blob/master/uGESRTP/Example - Rich)
+[LINK](uGESRTP/Example - Rich/uWatchtable/bin/Release)
+
