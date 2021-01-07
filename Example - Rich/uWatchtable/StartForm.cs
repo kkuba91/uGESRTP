@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Net;
@@ -134,7 +134,9 @@ namespace uWatchtable
             }
             else
             {
-                label_GE_Status.Text = "OK?";
+                label_GE_Status.Text = "Conn NOK";
+                button_GE_Connect.Visible = true;
+                button_GE_Disconnect.Visible = false;
             }
         }
 
@@ -319,16 +321,21 @@ namespace uWatchtable
             }
 
             // VALUE WRITE:
-            if (e.ColumnIndex == 5) 
+            if (e.ColumnIndex == 5 && GE_driver.Connected)
             {
+                
                 string representation = "";
                 if(dataTable.Rows[e.RowIndex].Cells[3].Value != null)
                     representation = dataTable.Rows[e.RowIndex].Cells[3].Value.ToString();
+
                 bool val_bool = false;
                 Int16 val_i16 = 0;
                 Int32 val_i32 = 0;
                 float val_f = 0.0f;
-                labelStat.Text = "Writing..";
+
+                if (dataTable.Rows[e.RowIndex].Cells[0].Value != null)
+                    if (dataTable.Rows[e.RowIndex].Cells[0].Value.ToString().Length >= 2)
+                        labelStat.Text = "Writing..";
 
                 if (WatchData[e.RowIndex].Address.Type=="R")
                     switch(representation)
@@ -382,9 +389,10 @@ namespace uWatchtable
                         default:
                             break;
                     }
+                
                 // Write single bits:
                 if(dataTable.Rows[e.RowIndex].Cells[0].Value!=null)
-                    if (dataTable.Rows[e.RowIndex].Cells[0].Value.ToString().Length>2)
+                    if (dataTable.Rows[e.RowIndex].Cells[0].Value.ToString().Length>=2)
                     {
                         string cell_val = "";
                         switch (dataTable.Rows[e.RowIndex].Cells[0].Value.ToString().Substring(0, 1))
@@ -397,10 +405,11 @@ namespace uWatchtable
 
                                 if (cell_val != "" && cell_val != " ")
                                 {
-                                    dataTable.Rows[e.RowIndex].Cells[5].Value = sValidateBool(cell_val);
+                                    cell_val = sValidateBool(cell_val);
                                     val_bool = Convert.ToBoolean(cell_val, new CultureInfo("en-US"));
                                     int stat = GE_driver.write_M_BIT(WatchData[e.RowIndex].Address.Value, val_bool);
                                     if (stat == 0) labelStat.Text = "Writing M BIT ok"; else labelStat.Text = "Writing M BIT NOK";
+                                    dataTable.Rows[e.RowIndex].Cells[5].Value = cell_val;
                                 }
                                 
                                 break;
@@ -413,10 +422,11 @@ namespace uWatchtable
 
                                 if (cell_val != "" && cell_val != " ")
                                 {
-                                    dataTable.Rows[e.RowIndex].Cells[5].Value = sValidateBool(cell_val);
+                                    cell_val = sValidateBool(cell_val);
                                     val_bool = Convert.ToBoolean(cell_val, new CultureInfo("en-US"));
                                     int stat = GE_driver.write_Q_BIT(WatchData[e.RowIndex].Address.Value, val_bool);
                                     if (stat == 0) labelStat.Text = "Writing Q BIT ok"; else labelStat.Text = "Writing Q BIT NOK";
+                                    dataTable.Rows[e.RowIndex].Cells[5].Value = cell_val;
                                 }
                                 
                                 break;
@@ -428,10 +438,11 @@ namespace uWatchtable
 
                                 if (cell_val != "" && cell_val != " ")
                                 {
-                                    dataTable.Rows[e.RowIndex].Cells[5].Value = sValidateBool(cell_val);
+                                    cell_val = sValidateBool(cell_val);
                                     val_bool = Convert.ToBoolean(cell_val, new CultureInfo("en-US"));
-                                    //GE_driver.write_G_BIT(WatchData[e.RowIndex].Address.Value, val_bool);    NOT PREPARED
+                                    //int stat = GE_driver.write_G_BIT(WatchData[e.RowIndex].Address.Value, val_bool);    NOT PREPARED
                                     labelStat.Text = "Zapis G BIT ok";
+                                    dataTable.Rows[e.RowIndex].Cells[5].Value = cell_val;
                                 }
                                 labelStat.Text = "Zapis G BIT..";
                                 break;
