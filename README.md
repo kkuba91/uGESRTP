@@ -140,3 +140,7 @@ int status = GE_driver.closeConnection();    /* status variale should return 0 w
  ## Trademarks and symbols mentioned here
  
  GE Inteligent (PLC, Machine Edition environment) are used and distributed by Emerson - ©2020 Emerson Electric Co. All rights reserved.
+ 
+ ## Reference:
+ [1] "Leveraging the SRTP protocol for over-the-network memory acquisition of a GE Fanuc Series 90-30"; George Denton, Filip Karpisek, Frank Breitinger, Ibrahim Baggili; DFRWS 2017 USA d Proceedings of the Seventeenth Annual DFRWS USA
+ 
