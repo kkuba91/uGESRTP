@@ -14,7 +14,11 @@ Put PLC memory address into table (DataGridView) and after comply online data wo
 
 To write value just write into proper cell, in "Write value" column.
 
+## Screenshot:
 
+Offline:
+
+![alt text](https://github.com/kkuba91/uGESRTP/blob/main/Example%20-%20Rich/Screenshot1.png?raw=true)
 
 ## Download example:
 [LINK](../Example%20-%20Rich/uWatchtable/bin/Release/GEwatch.exe)
