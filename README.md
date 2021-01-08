@@ -134,6 +134,9 @@ value = read_AQ_WORD(address);
 int status = GE_driver.closeConnection();    /* status variale should return 0 with success */
  ```
  
+ ## Chaeck out an example:
+[LINK](https://github.com/kkuba91/uGESRTP/tree/main/Example%20-%20Rich)
+
  ## Trademarks and symbols mentioned here
  
  GE Inteligent (PLC, Machine Edition environment) are used and distributed by Emerson - ©2020 Emerson Electric Co. All rights reserved.
