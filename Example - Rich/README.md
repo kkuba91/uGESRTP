@@ -1,6 +1,7 @@
 # Rich Example of GE PLC data manipulation
 
-Requirements: .NET >= 4.5
+[![Language: Platform](https://img.shields.io/badge/platform-win--32%20%7C%20win--64-lightgrey)](https://github.com/kkuba91/uGESRTP)
+[![.NET: Version](https://img.shields.io/badge/.NET-%3E%3D4.5-brightgreen)](https://github.com/kkuba91/uGESRTP)
 
 ## Created as watchtable
 
