@@ -6,15 +6,19 @@
 #### Micro GE Inteligent PLCs communication protocol
 #### Used by PLC family: 90-30, 90-70, RX3i, RX7i
 #### Class tested with RX3i CPU with general functions for data exchange with a PLC
-#### Protocol was design mainly to communicate Machine Edition Development Environment with PLC. Unfortunately this is the only native protocol for data communication, so it is high aviable and takes full access to PLC data. Somehow restricted(parametrized) access was given to other protocols like Modbus, tcp.OPC. That is why preffered use for commisioning is a principle practice strongly recommended here.
+#### Protocol was design mainly to communicate Machine Edition Development Environment with PLC. Unfortunately this is the native protocol for data communication, so data is high aviable and protocol allows to take a full access to PLC (like by PLC IDE). The structure is closed and explored at observations. Somehow restricted(parametrized) access to tags was given to other protocols like Modbus, tcp.OPC. That is why preffered use for commisioning is a principle practice strongly recommended here.
 
 Metodology of the protocol:
 
-- Set/Reset value (like in Modbus - no realtime ethernet)
+- Set/Reset value (like in Modbus - no realtime ethernet - no watchdog, but still it is quite fast)
+
+- According observations[2] SCADA drivers request for every memory type (%R, %AI, &M, %Q..) separately (not possible to pack two requests inside one tcp/ip transaction)
+
+- According observations[2] SCADA drivers always request for not single data register (in my test it was 7 registers, but only one was read). The reason is because of required structure of ACK,PSH answer packet has required length (56 bytes). This mechanism forces PLC to send next packet with bare data (only requested data values listed inside a ACK, PSH packet. It is convinient for larger data read from the PLC. 
 
 - Use of Ethernet Service Requests for data manipulation (something similar like SRV_REQ function block in PLC code, but it has other coding)
 
-- It uses TCP/IP communication with initialization at the begining
+- It uses TCP/IP communication with initialization (handshake) at the begining
 
 ### How to:
 
