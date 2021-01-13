@@ -15,12 +15,12 @@ namespace uWatchtable
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            CheckRun();
+            // CheckRun();                      (1) uncomment to run App only in Admin privilages
             // Added just in case of lack priviliges to end with noroot process
-            if (Program.IsAdministrator())
-                Application.Run(new StartForm());
-            else
-                Application.Exit();
+            // if (Program.IsAdministrator())   (2) uncomment to run App only in Admin privilages
+            Application.Run(new StartForm());
+            // else                             (3) uncomment to run App only in Admin privilages  
+            //    Application.Exit();           (4) uncomment to run App only in Admin privilages
         }
 
         /* Check Identity of current process with Administrator priviliges.

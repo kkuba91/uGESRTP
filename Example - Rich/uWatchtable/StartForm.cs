@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Net;
@@ -154,7 +154,7 @@ namespace uWatchtable
                 foreach (char c in stempIP)
                     if (c == '.') count++;
 
-                if (ValidateIP && count==4)
+                if (ValidateIP && count==3)
                     label_GE_valid.Text = "Valid";
                 else
                     label_GE_valid.Text = "Not valid";
@@ -482,9 +482,10 @@ namespace uWatchtable
                 WatchData[readIndex] = readRow(WatchData[readIndex]).Result;
                 dataTable.Rows[readIndex].Cells[4].Value = WatchData[readIndex].sValueRead;
                 label_Odczyt.Text = WatchData[readIndex].Address.Type + WatchData[readIndex].Address.Value + WatchData[readIndex].Address.Specifier;
-                readIndex++;
+                
             }
-                if (readIndex >= max2)
+            readIndex++;
+            if (readIndex >= max2)
                     readIndex = 0;
         }
 
