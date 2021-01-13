@@ -13,10 +13,10 @@ namespace uWatchtable
 
         /*    Second send 56 bytes, to the PLC: 0x08 0x00 ... 
          *    It will respond with statuses:    0x02 0x00 ...
-         *    BECAUSE DO NOT KNOW WHAT IT IS FOR - IT IS NOT USED - but could be helpful
+         *    NOT USED - but could be helpful
          *    */
         private byte[] msg_second = {
-            0x08,        // 00 - Myst be 08 - Unknown Type (used by SCADAs)
+            0x08,        // 00 - Must be 08 - Unknown Type (used by SCADAs)
             0x00,        // 01 - Unknown
             0x01,        // 02 - Seq Number
             0x00,        // 03 - Unknown
