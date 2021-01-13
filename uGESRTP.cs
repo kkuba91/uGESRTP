@@ -1,5 +1,6 @@
-using System;
+﻿using System;
 using System.Net.Sockets;
+
 
 namespace uWatchtable
 {
@@ -10,6 +11,71 @@ namespace uWatchtable
          *    */
         private byte[] msg_init = new byte[56];
 
+        /*    Second send 56 bytes, to the PLC: 0x08 0x00 ... 
+         *    It will respond with statuses:    0x02 0x00 ...
+         *    BECAUSE DO NOT KNOW WHAT IT IS FOR - IT IS NOT USED - but could be helpful
+         *    */
+        private byte[] msg_second = {
+            0x08,        // 00 - Myst be 08 - Unknown Type (used by SCADAs)
+            0x00,        // 01 - Unknown
+            0x01,        // 02 - Seq Number
+            0x00,        // 03 - Unknown
+            0x00,        // 04 - Text Length
+            0x00,        // 05 - Unknown / Text character?
+            0x00,        // 06 - Unknown / Text character?
+            0x00,        // 07 - Unknown / Text character?
+            0x00,        // 08 - Unknown / Text character?
+            0x01,        // 09 - Unknown / Text character?
+            0x00,        // 10 - Unknown / Text character?
+            0x00,        // 11 - Unknown / Text character?
+            0x00,        // 12 - Unknown / Text character?
+            0x00,        // 13 - Unknown / Text character?
+            0x00,        // 14 - Unknown / Text character?
+            0x00,        // 15 - Unknown / Text character?
+            0x00,        // 16 - Unknown / Text character?
+            0x01,        // 17 - Unknown / Always x01
+            0x00,        // 18 - Unknown
+            0x00,        // 19 - Unknown
+            0x00,        // 20 - Unknown
+            0x00,        // 21 - Unknown
+            0x00,        // 22 - Unknown
+            0x00,        // 23 - Unknown
+            0x00,        // 24 - Unknown
+            0x00,        // 25 - Unknown
+            0x00,        // 26 - Time Seconds
+            0x00,        // 27 - Time Minutes
+            0x00,        // 28 - Time Hours
+            0x00,        // 29 - Reserved / Always x01
+            0x06,        // 30 - Seq Number (Repeated) (0x06) - meaning in responces from PLC
+            0xc0,        // 31 - Message Type
+            0x00,        // 32 - Mailbox Source
+            0x00,        // 33 - Mailbox Source
+            0x00,        // 34 - Mailbox Source
+            0x00,        // 35 - Mailbox Source
+            0x10,        // 36 - Mailbox Destination // dec: 3600
+            0x0e,        // 37 - Mailbox Destination
+            0x00,        // 38 - Mailbox Destination
+            0x00,        // 39 - Mailbox Destination
+            0x01,        // 40 - Packet Number // to check
+            0x01,        // 41 - Total Packet Number
+            0x4f,        // 42 - Service Request Code - (Some optional SERVICE_REQUEST_CODE - unknown)
+            0x01,        // 43 - Request Dependent Space (0x01 must be for 0x4f Service Request)
+            0x00,        // 43 - Dependent (0x00 here)
+            0x00,        // 44 - Dependent (0x00 here)
+            0x00,        // 45 - Dependent (0x00 here)
+            0x00,        // 46 - Dependent (0x00 here)
+            0x00,        // 47 - Dependent (0x00 here)
+            0x00,        // 48 - Dependent (0x00 here)
+            0x00,        // 49 - Dependent (0x00 here)
+            0x00,        // 50 - Dependent (0x00 here)
+            0x00,        // 51 - Dependent (0x00 here)
+            0x00,        // 52 - Dependent (0x00 here)
+            0x00,        // 53 - Dependent (0x00 here)
+            0x00,        // 54 - Dependent (0x00 here)
+            0x00         // 55 - Dependent (0x00 here)
+        };
+
+
         /*    This is standard message format, you need to update 
          *    some fields before sending.
          *    PC sends request starting with: 0x02 0x00 ...
@@ -18,7 +84,7 @@ namespace uWatchtable
         private byte[] msg_base = { 
             0x02,        // 00 - Type (x03:=ReceiveOK, x02:=Transmit, x08:=Something just after msg_init - maybe kind of exception interruption?)
             0x00,        // 01 - Unknown
-            0x06,        // 02 - Seq Number (x06 is ok, x05 also according referenced document)
+            0x00,        // 02 - Seq Number (x00 works, x06 also works, x05 also according referenced document)
             0x00,        // 03 - Unknown
             0x00,        // 04 - Text Length
             0x00,        // 05 - Unknown / Text character?
@@ -207,6 +273,18 @@ namespace uWatchtable
             }
         }
 
+        /* SHORT BRIEF:
+         * 
+         * Every function with request for data with smaller length will be
+         * responded with single answer (inside 56 bytes packet).
+         * But when request for data length will be greater, the respond from PLC
+         * will be divided:
+         *  - FIRST  (Length always 56 bytes packet) with Message Type (0x94 (byte nr 31) ) with some statuses
+         *  - SECOND (Length dependend exactly of Quantity with data bytes ONLY - convenient packet data)
+         *  
+         *  Summary: 
+         *  The second data request with devided respond messages has same philosophy as ModBus data in packet.
+         */
 
         /* REGISTERS MEMORY "%R" READ/WRITE (WORD/DWORD/FLOAT)*/
         #region REGISTERS
