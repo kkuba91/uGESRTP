@@ -14,7 +14,7 @@ Metodology of the protocol:
 
 - According observations[2] SCADA drivers request for every memory type (%R, %AI, &M, %Q..) separately (not possible to pack two requests inside one tcp/ip transaction)
 
-- According observations[2] SCADA drivers always request for not single data register (in my case it was 7 registers data exchange, but only one was read - requested one SCADA). In generał it is because of required structure of ACK,PSH. The answer packet has required length (56 bytes). This mechanism forces PLC to send next packet with bare data only (requested data values listed inside a ACK, PSH packet. It is convenient for larger data rangers read from the PLC. 
+- According observations[2] SCADA drivers always request for not single data register (in my case it was 7 registers data exchange, but only one was read - requested one to SCADA program). In generał it is because of required structure of ACK,PSH. The answer packet has required length (56 bytes). This mechanism forces PLC to send next packet with bare data only (requested data values listed inside a ACK, PSH packet. It is convenient for larger data rangers read from the PLC. 
 
 - Use of Ethernet Service Requests for data manipulation (something similar like SRV_REQ function block in PLC code, but it has other coding)
 
