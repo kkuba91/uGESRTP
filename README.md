@@ -6,7 +6,7 @@
 #### Micro GE Inteligent PLCs communication protocol.
 #### Used by PLC family: 90-30, 90-70, RX3i, RX7i.
 #### Class tested with RX3i CPU and general functions for data exchange with a PLC.
-#### Protocol was design mainly to communicate Machine Edition Development Environment with PLC. Unfortunately this is the native protocol also for: diagnostic, start/stop, program dwnld/upld and so on. That is so the data exchange is high aviable this way and protocol allows to take a full access to PLC (like by PLC IDE). The structure is closed and explored at observations. Somehow restricted(parametrized) access to tags was given to other protocols like Modbus, tcp.OPC. That is why preffered use for commisioning is a principle practice strongly recommended here.
+#### Protocol was design mainly to communicate Machine Edition Development Environment with PLC. Unfortunately this is the native protocol also for: diagnostic, start/stop, program dwnld/upld and so on. That is so the data exchange is high aviable this way and protocol allows to take a full access to PLC (like by PLC IDE). The structure is closed and explored at observations. Somehow restricted(parametrized) access to tags was given to other protocols like Modbus, tcp.OPC, but not to GESRTP. That is why preffered use od the GESRTP od for commisioning. This is a principle practice strongly recommended here.
 
 Metodology of the protocol:
 
