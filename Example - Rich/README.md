@@ -21,6 +21,12 @@ Offline:
 
 ![alt text](https://github.com/kkuba91/uGESRTP/blob/main/Example%20-%20Rich/Screenshot1.png?raw=true)
 
+## Last changes:
+
+Added save to file and load from file option. This is the last one and the watchtable will not be developed more.
+
+Issues left: Format representation in dataGridView.
+
 ## Download example:
 [LINK](../Example%20-%20Rich/uWatchtable/bin/Release/GEwatch.exe)
 
