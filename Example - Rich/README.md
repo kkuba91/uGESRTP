@@ -23,7 +23,7 @@ Offline:
 
 ## Last changes:
 
-Added save to file and load from file option. This is the last one and the watchtable will not be developed more.
+Added save to file and load from file option. This is the last one and the watchtable will not be developed anymore.
 
 Issues left: Format representation in dataGridView.
 
