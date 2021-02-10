@@ -546,5 +546,67 @@ namespace uWatchtable
         {
             timerRW.Interval = trackBar_Refresh.Value;
         }
+
+        private void button_save_Click(object sender, EventArgs e)
+        {
+            int rows = 0;
+            rows = dataTable.RowCount-1;
+            label1.Text = rows.ToString();
+
+            // Displays a SaveFileDialog so the user can save the Image
+            // assigned to Button2.
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "List set|*.txt";
+            saveFileDialog1.Title = "Save a list set File";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                System.IO.StreamWriter file =
+                    new System.IO.StreamWriter(saveFileDialog1.OpenFile());
+
+                file.WriteLine(rows.ToString());
+                for(int i = 0; i<rows; i++)
+                {
+                    file.WriteLine(dataTable.Rows[i].Cells[0].Value.ToString());
+                    file.WriteLine(dataTable.Rows[i].Cells[1].Value.ToString());
+                    file.WriteLine(dataTable.Rows[i].Cells[2].Value.ToString());
+                    file.WriteLine(dataTable.Rows[i].Cells[3].Value.ToString());
+                }
+
+                file.Dispose();
+                file.Close();
+            }
+
+        }
+
+        private void button_load_Click(object sender, EventArgs e)
+        {
+            int rows = 0;
+            int actrows = 0;
+            actrows = dataTable.RowCount-1;
+            for (int i = 1; i < actrows+1; i++)
+            {
+                dataTable.Rows.RemoveAt(actrows - i);
+            }
+            // Displays a SaveFileDialog so the user can save the Image
+            // assigned to Button2.
+
+            OpenFileDialog loadFileDialog1 = new OpenFileDialog();
+            loadFileDialog1.Filter = "List set|*.txt";
+            loadFileDialog1.Title = "Load a list set File";
+            if (loadFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                System.IO.StreamReader file = 
+                    new System.IO.StreamReader(loadFileDialog1.OpenFile());
+
+                int.TryParse(file.ReadLine(), out rows);
+                for (int i = 0; i < rows; i++)
+                {
+                    dataTable.Rows.Add(file.ReadLine(), file.ReadLine(), file.ReadLine(), file.ReadLine());
+                }
+
+                file.Dispose();
+                file.Close();
+            }
+        }
     }
 }

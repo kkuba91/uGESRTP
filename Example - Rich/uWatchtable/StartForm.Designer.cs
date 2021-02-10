@@ -45,6 +45,8 @@
             this.buttonMinimize = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
             this.LeftPanel = new System.Windows.Forms.Panel();
+            this.button_load = new System.Windows.Forms.Button();
+            this.button_save = new System.Windows.Forms.Button();
             this.button_GE_Disconnect = new System.Windows.Forms.Button();
             this.button_GE_Connect = new System.Windows.Forms.Button();
             this.label_Odczyt = new System.Windows.Forms.Label();
@@ -65,6 +67,7 @@
             this.RValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timerRW = new System.Windows.Forms.Timer(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             this.TopBar.SuspendLayout();
             this.LeftPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_Refresh)).BeginInit();
@@ -134,8 +137,11 @@
             // 
             this.LeftPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.LeftPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LeftPanel.Controls.Add(this.button_load);
+            this.LeftPanel.Controls.Add(this.button_save);
             this.LeftPanel.Controls.Add(this.button_GE_Disconnect);
             this.LeftPanel.Controls.Add(this.button_GE_Connect);
+            this.LeftPanel.Controls.Add(this.label1);
             this.LeftPanel.Controls.Add(this.label_Odczyt);
             this.LeftPanel.Controls.Add(this.label_max);
             this.LeftPanel.Controls.Add(this.label_min);
@@ -149,6 +155,38 @@
             this.LeftPanel.Name = "LeftPanel";
             this.LeftPanel.Size = new System.Drawing.Size(156, 478);
             this.LeftPanel.TabIndex = 1;
+            // 
+            // button_load
+            // 
+            this.button_load.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button_load.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.button_load.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button_load.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
+            this.button_load.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_load.ForeColor = System.Drawing.Color.Silver;
+            this.button_load.Location = new System.Drawing.Point(6, 192);
+            this.button_load.Name = "button_load";
+            this.button_load.Size = new System.Drawing.Size(78, 23);
+            this.button_load.TabIndex = 10;
+            this.button_load.Text = "LOAD LIST";
+            this.button_load.UseVisualStyleBackColor = false;
+            this.button_load.Click += new System.EventHandler(this.button_load_Click);
+            // 
+            // button_save
+            // 
+            this.button_save.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button_save.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.button_save.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button_save.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
+            this.button_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_save.ForeColor = System.Drawing.Color.Silver;
+            this.button_save.Location = new System.Drawing.Point(6, 163);
+            this.button_save.Name = "button_save";
+            this.button_save.Size = new System.Drawing.Size(78, 23);
+            this.button_save.TabIndex = 10;
+            this.button_save.Text = "SAVE LIST";
+            this.button_save.UseVisualStyleBackColor = false;
+            this.button_save.Click += new System.EventHandler(this.button_save_Click);
             // 
             // button_GE_Disconnect
             // 
@@ -425,6 +463,17 @@
             this.timerRW.Interval = 30;
             this.timerRW.Tick += new System.EventHandler(this.timerRW_Tick);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label1.Location = new System.Drawing.Point(4, 438);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(14, 15);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "#";
+            // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -479,6 +528,9 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn Type;
         private System.Windows.Forms.DataGridViewTextBoxColumn RValue;
         private System.Windows.Forms.DataGridViewTextBoxColumn WValue;
+        private System.Windows.Forms.Button button_load;
+        private System.Windows.Forms.Button button_save;
+        private System.Windows.Forms.Label label1;
     }
 }
 
